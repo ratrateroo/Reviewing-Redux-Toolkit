@@ -1,8 +1,11 @@
 const redux = require("redux");
+const reduxLogger = require("redux-logger");
 const { legacy_createStore: createStore } = require("redux");
 const bindActionCreators = redux.bindActionCreators;
-
 const combineReducers = redux.combineReducers;
+
+const applyMiddleware = redux.applyMiddleware;
+const logger = reduxLogger.createLogger();
 
 //action type
 const CAKE_ORDERED = "CAKE_ORDERED";
@@ -130,7 +133,9 @@ const rootReducer = combineReducers({
 });
 
 //const store = createStore(reducer);
-const store = createStore(rootReducer);
+//const store = createStore(rootReducer);
+
+const store = createStore(rootReducer, applyMiddleware(logger));
 console.log("Initial state", store.getState());
 
 const unsubscribe = store.subscribe(() =>
