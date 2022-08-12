@@ -15,6 +15,7 @@ const ICECREAM_RESTOCKED = "ICECREAM_RESTOCKED";
 
 //action creator
 function orderCake() {
+  //action object is returned by action creator
   return {
     type: CAKE_ORDERED,
     payload: 1,
